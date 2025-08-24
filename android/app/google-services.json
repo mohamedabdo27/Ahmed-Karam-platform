@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "336832482118",
+    "project_id": "ahmed-karam",
+    "storage_bucket": "ahmed-karam.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:336832482118:android:9ec7b6a355439ca1f87347",
+        "android_client_info": {
+          "package_name": "com.example.ahmed_karam"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2JCmX3q71N9lEGhOtxmYS-cd028JAFcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
