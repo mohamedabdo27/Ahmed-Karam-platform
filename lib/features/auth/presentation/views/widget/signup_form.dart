@@ -87,7 +87,12 @@ class _LoginFormState extends State<SignupForm> {
               keyboardType: TextInputType.visiblePassword,
               validator: (value) => validatePassword(value: value),
             ),
-
+            TextButton(
+              onPressed: () {
+                GoRouter.of(context).pushReplacement(AppNavigate.kLoginView);
+              },
+              child: Text("Login"),
+            ),
             Expanded(child: SizedBox(height: 20)),
             BlocConsumer<LoginCubit, LoginState>(
               listener: (context, state) {
@@ -95,7 +100,8 @@ class _LoginFormState extends State<SignupForm> {
                   isLoading = true;
                 } else if (state is SignupSuccessState) {
                   isLoading = false;
-                  GoRouter.of(context).go(AppNavigate.kHomeView);
+
+                  context.pushReplacement(AppNavigate.kHomeView);
 
                   showSuccessSnackBar(context, msg: "Signup success");
                 } else if (state is SignupFailureState) {

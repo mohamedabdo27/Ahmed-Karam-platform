@@ -1,12 +1,11 @@
 import 'dart:developer';
 
+import 'package:ahmed_karam/core/constants.dart';
 import 'package:ahmed_karam/core/utils/function/cach_user.dart';
 import 'package:ahmed_karam/features/auth/data/models/user_model.dart';
-import 'package:ahmed_karam/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hive/hive.dart';
 
 class AuthService {
   Future<Either<Failure, User?>> login({

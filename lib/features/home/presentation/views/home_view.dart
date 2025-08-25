@@ -1,6 +1,8 @@
 import 'package:ahmed_karam/core/utils/adaptive_ui.dart';
+import 'package:ahmed_karam/features/home/presentation/views/widgets/course_item.dart';
+
+import 'package:ahmed_karam/features/home/presentation/views/widgets/home_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -8,21 +10,13 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: SvgPicture.asset('assets/images/logo.svg'),
-        actions: [
-          CircleAvatar(
-            radius: 16,
-            backgroundImage: AssetImage("assets/images/profile_image.jpeg"),
-          ),
-        ],
-      ),
+      appBar: HomeAppBar(),
       body: AdaptiveUi(
         mobileBuilder: (context) => HomeViewMobile(),
         tabletBuilder: (context) => HomeViewWeb(),
         webBuilder: (context) => HomeViewWeb(),
       ),
-    );
+    ); //
   }
 }
 
@@ -31,7 +25,31 @@ class HomeViewMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(child: Text("Welcome to Ahmed Karam Platform")),
+          SizedBox(height: 30),
+          Text("Courses : "),
+          SizedBox(height: 16),
+
+          Expanded(
+            child: GridView.builder(
+              itemCount: 10,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                childAspectRatio: 1.8,
+                crossAxisCount: 2,
+              ),
+              itemBuilder: (context, index) => CourseItem(),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -40,6 +58,30 @@ class HomeViewWeb extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(child: Text("Welcome to Ahmed Karam Platform")),
+          SizedBox(height: 30),
+          Text("Courses : "),
+          SizedBox(height: 16),
+
+          Expanded(
+            child: GridView.builder(
+              itemCount: 200,
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+                childAspectRatio: 1.8,
+                maxCrossAxisExtent: 300,
+              ),
+              itemBuilder: (context, index) => CourseItem(),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -9,10 +9,13 @@ class SignupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Signup")),
-      body: AdaptiveUi(
-        mobileBuilder: (contxet) => SignupMobileView(),
-        tabletBuilder: (contxet) => SignupWebView(),
-        webBuilder: (contxet) => SignupWebView(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: AdaptiveUi(
+          mobileBuilder: (contxet) => SignupMobileView(),
+          tabletBuilder: (contxet) => SignupWebView(),
+          webBuilder: (contxet) => SignupWebView(),
+        ),
       ),
     );
   }
