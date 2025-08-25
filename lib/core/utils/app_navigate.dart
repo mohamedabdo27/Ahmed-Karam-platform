@@ -1,24 +1,25 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:ahmed_karam/core/constants.dart';
 import 'package:ahmed_karam/features/auth/data/models/user_model.dart';
 import 'package:ahmed_karam/features/auth/data/services/auth_service.dart';
 import 'package:ahmed_karam/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:ahmed_karam/features/auth/presentation/views/login_view.dart';
 import 'package:ahmed_karam/features/auth/presentation/views/signup_view.dart';
+import 'package:ahmed_karam/features/home/presentation/views/course_view.dart';
 import 'package:ahmed_karam/features/home/presentation/views/home_view.dart';
-import 'package:ahmed_karam/main.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
+// import 'package:hive/hive.dart';
 
 class AppNavigate {
   static const String kLoginView = '/login';
   static const String kSignupView = '/kSignupView';
   static const String kHomeView = '/home';
+  static const String kCourseView = '/kCourseView';
 
   // GoRouter configuration
   static final router = GoRouter(
@@ -29,8 +30,8 @@ class AppNavigate {
     redirect: (context, state) async {
       UserModel? user;
       if (userModel == null) {
-        final userBox = Hive.box<UserModel>('userBox');
-        user = userBox.get('currentUser');
+        final userBox = Hive.box<UserModel>(kUserBox);
+        user = userBox.get(kCurrentUserModelKey);
       } else {
         user = userModel;
       }
@@ -44,6 +45,9 @@ class AppNavigate {
         log("null and not login");
 
         return kLoginView;
+      } else if (user != null &&
+          (state.fullPath == kSignupView || state.fullPath == kLoginView)) {
+        return kHomeView;
       }
       // if (user != null) {
       //   return kHomeView;
@@ -98,6 +102,7 @@ class AppNavigate {
             ),
       ),
       GoRoute(path: kHomeView, builder: (context, state) => HomeView()),
+      GoRoute(path: kCourseView, builder: (context, state) => CourseView()),
     ],
   );
 }

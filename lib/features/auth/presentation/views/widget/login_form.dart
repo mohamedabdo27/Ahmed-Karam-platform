@@ -76,7 +76,7 @@ class _LoginFormState extends State<LoginForm> {
             ),
             TextButton(
               onPressed: () {
-                GoRouter.of(context).push(AppNavigate.kSignupView);
+                context.pushReplacement(AppNavigate.kSignupView);
               },
               child: Text("Sign Up"),
             ),
@@ -90,7 +90,7 @@ class _LoginFormState extends State<LoginForm> {
                   isLoading = false;
 
                   showSuccessSnackBar(context, msg: "login success");
-                  GoRouter.of(context).go(AppNavigate.kHomeView);
+                  GoRouter.of(context).pushReplacement(AppNavigate.kHomeView);
                 } else if (state is LoginFailureState) {
                   isLoading = false;
                   showErrorSnackBar(context, msg: state.error);
