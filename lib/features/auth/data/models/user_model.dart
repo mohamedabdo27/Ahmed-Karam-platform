@@ -9,6 +9,8 @@ class UserModel {
   String? email;
   @HiveField(2)
   String? id;
+  @HiveField(3)
+  String? image;
 
   UserModel({this.name, this.email, this.id});
 }

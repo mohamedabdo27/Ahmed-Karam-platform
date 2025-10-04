@@ -1,27 +1,28 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyBlocObserver extends BlocObserver {
-  @override
-  void onCreate(BlocBase bloc) {
-    super.onCreate(bloc);
-    print('onCreate -- ${bloc.runtimeType}');
-  }
-
+class MyBlocObserver implements BlocObserver {
   @override
   void onChange(BlocBase bloc, Change change) {
-    super.onChange(bloc, change);
-    print('onChange -- ${bloc.runtimeType}, $change');
-  }
-
-  @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    print('onError -- ${bloc.runtimeType}, $error');
-    super.onError(bloc, error, stackTrace);
+    debugPrint('change : $change');
   }
 
   @override
   void onClose(BlocBase bloc) {
-    super.onClose(bloc);
-    print('onClose -- ${bloc.runtimeType}');
+    debugPrint('close :$bloc');
   }
+
+  @override
+  void onCreate(BlocBase bloc) {
+    debugPrint('create :$bloc');
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {}
+
+  @override
+  void onEvent(Bloc bloc, Object? event) {}
+
+  @override
+  void onTransition(Bloc bloc, Transition transition) {}
 }

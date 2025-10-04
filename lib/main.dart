@@ -1,5 +1,6 @@
 import 'package:ahmed_karam/core/constants.dart';
 import 'package:ahmed_karam/core/utils/app_navigate.dart';
+import 'package:ahmed_karam/core/utils/bloc_observer.dart';
 import 'package:ahmed_karam/features/auth/data/models/user_model.dart';
 import 'package:ahmed_karam/features/home/presentation/manager/home_cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,8 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initHive();
+  Bloc.observer = MyBlocObserver();
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeCubit(),
+      create: (context) => HomeCubit()..getCourses(),
       child: MaterialApp.router(
         routerConfig: AppNavigate.router,
         debugShowCheckedModeBanner: false,

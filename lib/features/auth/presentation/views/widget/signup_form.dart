@@ -4,6 +4,7 @@ import 'package:ahmed_karam/core/utils/function/validate_text_form_field.dart';
 import 'package:ahmed_karam/features/auth/presentation/manager/login_cubit/login_cubit.dart';
 import 'package:ahmed_karam/features/auth/presentation/views/widget/login_button.dart';
 import 'package:ahmed_karam/features/auth/presentation/views/widget/login_text_form_field.dart';
+import 'package:ahmed_karam/features/home/presentation/manager/home_cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,6 +103,7 @@ class _LoginFormState extends State<SignupForm> {
                   isLoading = false;
 
                   context.pushReplacement(AppNavigate.kHomeView);
+                  BlocProvider.of<HomeCubit>(context).getCourses();
 
                   showSuccessSnackBar(context, msg: "Signup success");
                 } else if (state is SignupFailureState) {
