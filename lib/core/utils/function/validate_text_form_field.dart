@@ -45,3 +45,13 @@ String? validateText({required String? value, required String title}) {
   }
   return null;
 }
+
+String? validateQuestion({required String? value, required String title}) {
+  if (value?.isEmpty ?? true) {
+    return '$title must not be empty';
+  }
+  // if (value!.length < 8) {
+  //   return '$title must be at least 8 characters';
+  // }
+  return null;
+}

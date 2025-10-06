@@ -111,7 +111,10 @@ class CourseView extends StatelessWidget {
                             onTap: () {
                               GoRouter.of(context).push(
                                 AppNavigate.kQuestionView,
-                                extra: state.quizzes[index],
+                                extra: {
+                                  "quizId": state.quizzes[index].id,
+                                  "courseId": model.id,
+                                },
                               );
                             },
                             child: QuizItem(model: state.quizzes[index]),
