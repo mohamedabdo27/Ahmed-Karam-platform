@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:ahmed_karam/core/utils/app_navigate.dart';
 import 'package:ahmed_karam/core/utils/function/show_error_snack_bar.dart';
 import 'package:ahmed_karam/core/utils/function/validate_text_form_field.dart';
 import 'package:ahmed_karam/features/auth/presentation/views/widget/login_button.dart';
@@ -10,7 +9,6 @@ import 'package:ahmed_karam/features/quiz/presentation/views/widgets/date_picker
 import 'package:ahmed_karam/features/quiz/presentation/views/widgets/set_exam_duration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class AddQuizView extends StatefulWidget {
   const AddQuizView({super.key, required this.courseId});

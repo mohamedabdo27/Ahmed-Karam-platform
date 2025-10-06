@@ -145,10 +145,16 @@ class AppNavigate {
       GoRoute(
         path: kQuestionView,
         builder: (context, state) {
-          Quiz model = state.extra as Quiz;
+          Map<String, dynamic> data = state.extra as Map<String, dynamic>;
+
+          String courseId = data["courseId"];
+          String quizId = data["quizId"];
           return BlocProvider(
-            create: (context) => AddQuizCubit(),
-            child: QuestionView(quiz: model),
+            create:
+                (context) =>
+                    AddQuizCubit()
+                      ..getQuestions(courseId: courseId, quizId: quizId),
+            child: QuestionView(quizId: quizId, courseId: courseId),
           );
         },
       ),

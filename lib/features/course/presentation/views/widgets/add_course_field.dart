@@ -22,7 +22,8 @@ class AddCourseField extends StatelessWidget {
         TextFormField(
           validator: validator,
           controller: controller,
-          maxLines: maxLines,
+          maxLines: 1,
+
           decoration: InputDecoration(
             hintText: "Enter the text..",
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),

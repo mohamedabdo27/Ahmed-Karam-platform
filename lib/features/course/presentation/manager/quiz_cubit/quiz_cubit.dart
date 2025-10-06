@@ -15,6 +15,7 @@ class QuizCubit extends Cubit<QuizState> {
               .collection("courses")
               .doc(id)
               .collection("quiz")
+              .orderBy("createdAt", descending: true)
               .get();
       List<Quiz> quizzes =
           snapshot.docs.map((element) {
