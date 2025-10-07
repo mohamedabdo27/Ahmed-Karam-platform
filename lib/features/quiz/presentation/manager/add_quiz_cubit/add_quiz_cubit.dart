@@ -128,7 +128,7 @@ class AddQuizCubit extends Cubit<AddQuizState> {
               .collection("quiz")
               .doc(quizId)
               .collection("questions");
-      final data = await snapshot.orderBy("questionNumber").get();
+      final data = await snapshot.orderBy("createdAt").get();
       if (data.docs.isEmpty) {
         isSubmitted = false;
         emit(GetQuestionsSuccessState());
@@ -193,8 +193,9 @@ class AddQuizCubit extends Cubit<AddQuizState> {
       for (int i = 0; i < questions.length; i++) {
         if (questions[i].isFromJson) {
         } else {
+          DateTime createdAt = DateTime.now();
           DocumentReference<Map<String, dynamic>> data = await snapshot.add({
-            "questionNumber": i + 1,
+            "createdAt": createdAt,
             "answers":
                 questions[i].answers
                     .map((toElement) => toElement.answerController.text)

@@ -46,7 +46,7 @@ String? validateText({required String? value, required String title}) {
   return null;
 }
 
-String? validateQuestion({required String? value, required String title}) {
+String? validateTextField({required String? value, required String title}) {
   if (value?.isEmpty ?? true) {
     return '$title must not be empty';
   }

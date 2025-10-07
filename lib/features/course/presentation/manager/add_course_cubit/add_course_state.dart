@@ -10,7 +10,11 @@ final class PickImageSuccessState extends AddCourseState {}
 
 final class PickImageFailureState extends AddCourseState {}
 
-final class AddCourseFailureState extends AddCourseState {}
+final class AddCourseFailureState extends AddCourseState {
+  final String error;
+
+  AddCourseFailureState({required this.error});
+}
 
 final class AddCourseSuccessState extends AddCourseState {}
 

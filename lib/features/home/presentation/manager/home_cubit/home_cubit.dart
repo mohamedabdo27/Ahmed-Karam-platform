@@ -31,18 +31,17 @@ class HomeCubit extends Cubit<HomeState> {
     courses = [];
     try {
       QuerySnapshot<Map<String, dynamic>> snapshot =
-          await FirebaseFirestore.instance.collection("courses").get();
+          await FirebaseFirestore.instance
+              .collection("courses")
+              .orderBy("createdAt", descending: true)
+              .get();
 
-      // log(snapshot.docs[0].data().toString());
       for (var element in snapshot.docs) {
         var course = Course.fromJson(element.data());
         course.id = element.id;
         courses.add(course);
       }
-      // courses =
-      //     snapshot.docs.map((element) {
-      //       return Course.fromJson(element.data());
-      //     }).toList();
+
       emit(GetCoursesSuccessState(courses: courses));
     } catch (e) {
       log(e.toString());

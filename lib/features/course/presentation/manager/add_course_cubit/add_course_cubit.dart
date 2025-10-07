@@ -58,11 +58,17 @@ class AddCourseCubit extends Cubit<AddCourseState> {
       CollectionReference courses = FirebaseFirestore.instance.collection(
         'courses',
       );
-      courses.add({"image": imageUrl, "title": title, "description": des});
+      final DateTime createdAt = DateTime.now();
+      courses.add({
+        "image": imageUrl,
+        "title": title,
+        "description": des,
+        "createdAt": createdAt,
+      });
       emit(AddCourseSuccessState());
     } catch (e) {
       log(e.toString());
-      emit(AddCourseFailureState());
+      emit(AddCourseFailureState(error: "there was an error"));
     }
   }
 }

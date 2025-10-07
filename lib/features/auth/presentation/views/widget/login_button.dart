@@ -5,7 +5,7 @@ class LoginButton extends StatelessWidget {
     super.key,
     required this.text,
     this.onTap,
-    required this.isLoading,
+    this.isLoading = false,
   });
   final String text;
   final void Function()? onTap;
